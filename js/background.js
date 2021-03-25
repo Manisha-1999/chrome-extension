@@ -9,7 +9,6 @@ function copyToClipboard(text) {
   document.execCommand("Copy", false, null);
   document.body.removeChild(copyDiv);
 }
-
 function copyFromClipboard() {
   var copyDiv = document.createElement('div');
   copyDiv.contentEditable = true;
@@ -23,7 +22,6 @@ function copyFromClipboard() {
   document.body.removeChild(copyDiv);
   return text;
 }
-
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   var action = request.action;
   if (action == "getKeys") {
@@ -36,9 +34,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   else if (action == "exportSettingsToClipboard") {
     var keys_str = JSON.stringify(request.keys);
     copyToClipboard(keys_str);
-  }
-  else if (action == "cleardownloads") {
-    chrome.browsingData.remove({"since": 0}, {"downloads": true});
   }
   else if (action == "nexttab") {
     selectTab("next");
@@ -53,37 +48,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     chrome.tabs.getSelected(null, function(tab){
       chrome.tabs.remove(tab.id);
     });
-  }
-  else if (action == "clonetab") {
-    chrome.tabs.getSelected(null, function(tab){
-      chrome.tabs.duplicate(tab.id);
-    });
-  }
-  else if (action == "onlytab") {
-    chrome.tabs.query({ windowId: chrome.windows.WINDOW_ID_CURRENT, pinned: false, active: false }, function(tabs){
-      var ids = new Array();
-      tabs.forEach(function(tab) {
-        ids.push(tab.id);
-      });
-      chrome.tabs.remove(ids);
-    });
-  }
-  else if (action == "togglepin") {
-    chrome.tabs.getSelected(null, function(tab){
-      var toggle = !tab.pinned;
-      chrome.tabs.update(tab.id, { pinned: toggle });
-    });
-  }
-  else if (action == "copyurl") {
-    copyToClipboard(request.text);
-  }
-  else if (action == "movetableft") {
-    if  (sender.tab.index > 0) {
-      chrome.tabs.move(sender.tab.id, {'index': sender.tab.index -1});
-    }
-  }
-  else if (action == "movetabright") {
-    chrome.tabs.move(sender.tab.id, {'index': sender.tab.index +1});
   }
   else if (action == 'gototab') {
     var createNewTab = function() {
@@ -118,7 +82,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     sendResponse({});
   }
 });
-
 function selectTab(direction) {
   chrome.tabs.getAllInWindow(null, function(tabs) {
     if (tabs.length <= 1)
@@ -130,6 +93,12 @@ function selectTab(direction) {
           break;
         case "previous":
           toSelect = tabs[(currentTab.index - 1 + tabs.length) % tabs.length];
+          break;
+        case "first":
+          toSelect = tabs[0];
+          break;
+        case "last":
+          toSelect = tabs[tabs.length - 1];
           break;
       }
       chrome.tabs.update(toSelect.id, { selected: true });

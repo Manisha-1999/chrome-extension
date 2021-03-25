@@ -11,12 +11,11 @@
       "clipboardRead",
       "browsingData",
       "storage",
-      "bookmarks",
       "<all_urls>"
     ],
-    "options_page": "pages/options.html",
+    "options_page": "options.html",
     "background": {
-      "page": "pages/background.html"
+      "page": "background.html"
     },
     "content_scripts": [
       {

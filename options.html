@@ -5,9 +5,12 @@
         <script src="../js/jquery.min.js" type="text/javascript"></script>
         <script src="../js/angular.min.js" type="text/javascript"></script>
         <script src="../js/options.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+
     </head>
-<body>
+    <body bgcolor="Lightskyblue"style="width:7px, height=7px;"> 
+        <fieldset style="width:7px, height=7px;">
+         <div align = 'center'>
+        
 <div class="container">
     <div class="page-header">
         <h1>SHORTKEYS for CHROME
@@ -15,26 +18,18 @@
     </div>
     <div class="row">
         <div class="span8">
-            <p class="alert"><strong>You MUST reload your browser or tabs after
+            <p class="alert"><strong>You MUST save your Key combos after
                 making changes here!</strong></p>
 
             <p class="settingssaved alert alert-success" style="display: none;">
-                Options saved. Now please reload your browser tabs for the
-                changes to take effect!</p>
-
-            <p class="chromesyncsuccess alert alert-success"
-               style="display: none;">Options synced to cloud.</p>
-
-            <p class="chromesyncfailure alert alert-failure"
-               style="display: none;">Sync to cloud failed.</p>
+                OPTION SAVED:)</p>
 
             <form class="well form-inline" ng-controller="OptionsCtrl">
 
-                <table>
-                    <tr>
+                <table border=1>
+                    <tr bgcolor="pink">
                         <th>Key binding</th>
                         <th>Action</th>
-                        <th>Active on</th>
                     </tr>
                 </table>
 
@@ -73,25 +68,7 @@
                             <option value="javascript">Run JavaScript</option>
                         </optgroup>
                     </select>
-                    <select ng-model="key.blacklist" class="blacklist">
-                        <option value="false">All sites</option>
-                        <option value="true">All sites except...</option>
-                        <option value="whitelist">Only on specific sites
-                        </option>
-                    </select>
 
-                    <div ng-show="key.blacklist" class="textarealabel">
-                        Blacklisted sites
-                    </div>
-                    <textarea ng-show="key.blacklist" ng-model="key.sites"
-                              class="sites"></textarea>
-
-                    <div ng-show="key.action == 'openbookmark'">
-                        <div class="textarealabel">Full title of bookmark to
-                            open
-                        </div>
-                        <input type="text" ng-model="key.bookmark" class="code">
-                    </div>
                     <div class="javascriptconfig">
                         <div class="javascriptconfigcode">
                             <div ng-show="key.action == 'javascript'"
@@ -102,41 +79,25 @@
                                       class="code"></textarea>
                         </div>
                     </div>
-                    <div class="gototabconfig">
-                        <div class="gototabmatchurl">
-                            <div ng-show="key.action == 'gototab'"
-                                 class="textarealabel">URL to match (ex: <code>*://*.amazon.com/*</code>)
-                            </div>
-                            <textarea ng-show="key.action == 'gototab'"
-                                      ng-model="key.matchurl"
-                                      class="taburl"></textarea>
-                        </div>
-                        <div class="gototabopenurl">
-                            <div ng-show="key.action == 'gototab'"
-                                 class="textarealabel">URL to open if no
-                                matching tab found
-                            </div>
-                            <textarea ng-show="key.action == 'gototab'"
-                                      ng-model="key.openurl"
-                                      class="taburl"></textarea>
-                        </div>
-                    </div>
+                
                     <button ng-click="deleteKey($index)"
                             class="del-btn btn btn-danger"><i
                             class="icon-remove icon-white"></i> Delete
                     </button>
                 </div>
 
-                <div class="form-actions">
+                <div bgcolor="green" class="form-actions">
                     <button ng-click="addEmpty()" class="btn pull-left"><i
                             class="icon-plus"></i> Add
                     </button>
-                    <div class="pull-right">
+                    <div bgcolor="green"class="pull-right">
                         <button ng-click="saveKeys()" class="btn btn-success"><i
                                 class="icon-ok icon-white"></i> Save
                         </button>
                     </div>
                 </div>
+            </form>
+        </div>
         <div class="span4">
             <p>Key combos are like(<code>ctrl</code>, <code>shift</code>,
                 etc.) plus we have to add one regular key (letter keys, number keys, arrow
@@ -147,11 +108,18 @@
                 <li><code>ctrl+h</code> (hold ctrl and then press h)</li>
                 <li><code>shift+r</code>(hold shift and then press r)</li>
             </ul>
+            <p>In addition to regular letters, numbers, and punctuation, the
+                following special keys can be used for shortcuts:
+                <code>backspace</code>, <code>tab</code>, <code>clear</code>,
+                <code>enter</code>, <code>return</code>, <code>space</code>,
+                <code>up</code>, <code>down</code>, <code>left</code>, <code>right</code>,
+                <code>end</code>,<code>del</code>, <code>delete</code>.</p>
                    
         </div>
     </div>
 
+</div> 
 </div>
-
+       
 </body>
 </html>

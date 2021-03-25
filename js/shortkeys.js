@@ -15,7 +15,6 @@ function globToRegex(glob) {
   regexChars.push("$");
   return new RegExp(regexChars.join(""));
 }
-
 chrome.runtime.sendMessage({action: "getKeys"}, function(response) {
   var url = document.URL;
   if (response) {
@@ -27,7 +26,6 @@ chrome.runtime.sendMessage({action: "getKeys"}, function(response) {
       }
     }
   }
-
   function activateKey(keyobj) {
     if (keyobj.blacklist && keyobj.sitesArray && keyobj.blacklist != "false") {
       if (keyobj.blacklist == "whitelist") {
@@ -49,35 +47,22 @@ chrome.runtime.sendMessage({action: "getKeys"}, function(response) {
       doAction(keyobj);
       return false;
     };
-
     var _oldStopCallback = Mousetrap.stopCallback;
     Mousetrap.stopCallback = function(e, element, combo) {
       if (element.classList.contains('mousetrap')) {
-        // We're not using the "mousetrap" class functionality, which allows
-        // you to whitelist elements, so if we come across elements with that class
-        // then we can assume that they are provided by the site itself, not by
-        // us, so we just treat them like normal inputs.
         return true;
       }
       return _oldStopCallback(e, element, combo);
     };
-
     Mousetrap.bind(keyobj.key, action);
   }
-
   function doAction(keyobj) {
     var action = keyobj.action;
-    var message = {};
-    
+    var message = {}; 
     if (action == 'copyurl') {
       message.text = document.URL;
     }
-
-    if (action == "top") {
-      window.scrollTo(0, 0);
-    } else if (action == "bottom") {
-      window.scrollTo(0, document.body.scrollHeight);
-    } else if (action == "scrollup") {
+     else if (action == "scrollup") {
       window.scrollBy(0,-50);
     } else if (action == "scrollupmore") {
       window.scrollBy(0,-500);
@@ -85,7 +70,6 @@ chrome.runtime.sendMessage({action: "getKeys"}, function(response) {
       window.scrollBy(0,50);
     } else if (action == "scrolldownmore") {
       window.scrollBy(0,500);
-
     } else if (action == 'back') {
       history.back();
     } else if (action == 'forward') {
