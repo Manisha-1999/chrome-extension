@@ -7,8 +7,7 @@
         <script src="../js/options.js" type="text/javascript"></script>
 
     </head>
-    <body bgcolor="Lightskyblue"style="width:7px, height=7px;"> 
-        <fieldset style="width:7px, height=7px;">
+    <body bgcolor="Lightskyblue"> 
          <div align = 'center'>
         
 <div class="container">
@@ -21,18 +20,7 @@
             <p class="alert"><strong>You MUST save your Key combos after
                 making changes here!</strong></p>
 
-            <p class="settingssaved alert alert-success" style="display: none;">
-                OPTION SAVED:)</p>
-
             <form class="well form-inline" ng-controller="OptionsCtrl">
-
-                <table border=1>
-                    <tr bgcolor="pink">
-                        <th>Key binding</th>
-                        <th>Action</th>
-                    </tr>
-                </table>
-
 
                 <div class="key-container" ng-repeat="key in keys">
                     <hr/>
@@ -40,8 +28,6 @@
                            placeholder="Key combo" type="text"/>
                     <select ng-model="key.action" class="action">
                         <optgroup label="Scrolling">
-                            <option value="top">Scroll to top</option>
-                            <option value="bottom">Scroll to bottom</option>
                             <option value="scrolldown">Scroll down</option>
                             <option value="scrolldownmore">Scroll down more
                             </option>
@@ -86,11 +72,11 @@
                     </button>
                 </div>
 
-                <div bgcolor="green" class="form-actions">
+                <div class="form-actions">
                     <button ng-click="addEmpty()" class="btn pull-left"><i
                             class="icon-plus"></i> Add
                     </button>
-                    <div bgcolor="green"class="pull-right">
+                    <div class="pull-right">
                         <button ng-click="saveKeys()" class="btn btn-success"><i
                                 class="icon-ok icon-white"></i> Save
                         </button>
@@ -98,15 +84,15 @@
                 </div>
             </form>
         </div>
-        <div class="span4">
+        <div  class="span4">
             <p>Key combos are like(<code>ctrl</code>, <code>shift</code>,
                 etc.) plus we have to add one regular key (letter keys, number keys, arrow
                 keys, etc), all joined with <code>+</code> signs.</p>
             <p><b>Examples:</b></p>
             <ul>
-                <li><code>e</code></li>
-                <li><code>ctrl+h</code> (hold ctrl and then press h)</li>
-                <li><code>shift+r</code>(hold shift and then press r)</li>
+                <code>e</code></br>
+               <code>ctrl+h</code> (hold ctrl and then press h)</br>
+                <code>shift+2</code>(hold shift and then press 2)</br>
             </ul>
             <p>In addition to regular letters, numbers, and punctuation, the
                 following special keys can be used for shortcuts:

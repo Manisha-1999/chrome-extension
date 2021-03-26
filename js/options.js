@@ -19,7 +19,7 @@ function OptionsCtrl($scope) {
     $scope.keys.splice(index, 1);
   };
   $scope.saveKeys = function () {
-    $scope.keys = $scope.keys.filter($scope.isEmpty); // Remove empty keys
+    $scope.keys = $scope.keys.filter($scope.isEmpty); 
     for (i = 0; i < $scope.keys.length; i++) {
       if (typeof $scope.keys[i].sites === 'string') {
         $scope.keys[i].sitesArray = $scope.keys[i].sites.split("\n");
@@ -68,7 +68,7 @@ function OptionsCtrl($scope) {
     if (settings.keys != undefined) {
       $scope.keys = settings.keys || [];
     } else {
-      $scope.keys = settings || [];  // This allows for conversion of the previous data format
+      $scope.keys = settings || [];  
     }
     $scope.chromesync = settings.chromesync || false;
   }
